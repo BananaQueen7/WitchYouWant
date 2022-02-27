@@ -1,0 +1,44 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerMovement : MonoBehaviour
+{
+    public float flyVelocity = 5f;
+    public float flyHeight = 5f;
+    private Rigidbody2D body;
+    void Start()
+    {
+        body = GetComponent<Rigidbody2D>();
+    }
+
+    
+    void Update()
+    {
+     
+    }
+
+    private void FixedUpdate()
+    {
+        TouchMove();
+    }
+
+    void TouchMove()
+    {
+        if(Input.GetMouseButton(0))
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        
+            //MOVE RIGHT
+            if(mousePos.x > 1)
+            {
+               body.AddForce(transform.right * flyVelocity, ForceMode2D.Impulse);
+            }
+            //MOVE LEFT
+            else if(mousePos.x < -1)
+            {
+              body.AddForce(-transform.right * flyVelocity, ForceMode2D.Impulse);
+            }
+        }
+    }
+}
