@@ -30,14 +30,14 @@ public class PlayerMovement : MonoBehaviour
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         
             //MOVE RIGHT
-            if(mousePos.x > 1)
+            if(mousePos.x > gameObject.transform.position.x)
             {
-               body.AddForce(transform.right * flyVelocity, ForceMode2D.Impulse);
+               body.AddForce(transform.right + transform.up * flyVelocity, ForceMode2D.Impulse);
             }
             //MOVE LEFT
-            else if(mousePos.x < -1)
+            else if(mousePos.x < gameObject.transform.position.x)
             {
-              body.AddForce(-transform.right * flyVelocity, ForceMode2D.Impulse);
+              body.AddForce(-transform.right + transform.up * flyVelocity, ForceMode2D.Impulse);
             }
         }
     }
